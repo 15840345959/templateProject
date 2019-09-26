@@ -98,7 +98,7 @@
     var form = null;
 
     $(function () {
-        if(top.location!=self.location)top.location=self.location;
+        if (top.location != self.location) top.location = self.location;
     });
 
     layui.config({
@@ -132,7 +132,7 @@
                     window.location.replace("{{URL::asset('/admin/index')}}");      //后台主页
                 } else {
                     layer.msg(ret.message, {icon: 5, time: 2000});
-                    if (ret.code == "122") {
+                    if (ret.code == "{{\App\Components\Common\ApiResponse::CAPTCHA_CODE_ERROR}}") {
                         $("#LAY-user-get-vercode").click();
                     }
                 }

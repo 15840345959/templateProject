@@ -79,20 +79,6 @@
 
                     <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu"
                         lay-filter="layadmin-system-side-menu">
-                        <li data-name="home" class="layui-nav-item layui-nav-itemed">
-                            <a href="javascript:;" lay-tips="业务概览" lay-direction="2">
-                                <i class="layui-icon layui-icon-home"></i>
-                                <cite>业务概览</cite>
-                            </a>
-                            <dl class="layui-nav-child">
-                                <dd data-name="console">
-                                    <a lay-href="{{ URL::asset('/admin/overview/manCompanyStmt') }}">物业公司报表</a>
-                                </dd>
-                                <dd data-name="console">
-                                    <a lay-href="{{ URL::asset('/admin/overview/busCompanyStmt') }}">在管项目报表</a>
-                                </dd>
-                            </dl>
-                        </li>
                         <li data-name="component" class="layui-nav-item">
                             <a href="javascript:;" lay-tips="角色管理" lay-direction="2">
                                 <i class="layui-icon layui-icon-user"></i>
@@ -107,97 +93,6 @@
                                 <dd data-name="button">
                                     <a lay-href="{{ URL::asset('/admin/user/index') }}">用户信息</a>
                                 </dd>
-                            </dl>
-                        </li>
-                        <li data-name="get" class="layui-nav-item">
-                            <a href="javascript:;" lay-href="{{ URL::asset('/admin/ad/index') }}" lay-tips="轮播设置"
-                               lay-direction="2">
-                                <i class="layui-icon layui-icon-carousel"></i>
-                                <cite>轮播设置</cite>
-                            </a>
-                        </li>
-                        <li data-name="app" class="layui-nav-item">
-                            <a href="javascript:;" lay-tips="物业、在管项目" lay-direction="2">
-                                <i class="layui-icon layui-icon-app"></i>
-                                <cite>物业、在管项目</cite>
-                            </a>
-                            <dl class="layui-nav-child">
-                                <dd>
-                                    <a lay-href="{{ URL::asset('/admin/manCompany/index') }}">物业公司</a>
-                                </dd>
-                                <dd data-name="workorder">
-                                    <a lay-href="{{ URL::asset('/admin/busCompany/index') }}">在管项目</a>
-                                </dd>
-                                <dd data-name="workorder">
-                                    <a lay-href="{{ URL::asset('/admin/companyUser/index') }}">职员管理</a>
-                                </dd>
-                                <dd data-name="workorder">
-                                    <a lay-href="{{ URL::asset('/admin/companyContract/index') }}">合同管理</a>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li data-name="app" class="layui-nav-item">
-                            <a href="javascript:;" lay-tips="员工管理" lay-direction="2">
-                                <i class="layui-icon layui-icon-senior"></i>
-                                <cite>员工管理</cite>
-                            </a>
-                            <dl class="layui-nav-child">
-                                <dd>
-                                    <a lay-href="{{ URL::asset('/admin/applyWorker/index') }}?audit_status=0">人员审核</a>
-                                </dd>
-                                <dd>
-                                    <a lay-href="{{ URL::asset('/admin/worker/index') }}">人力目录</a>
-                                </dd>
-                                <dd>
-                                    <a lay-href="{{ URL::asset('/admin/companyWorker/index') }}">雇佣关系查询</a>
-                                </dd>
-                                <dd>
-                                    <a lay-href="{{ URL::asset('/admin/exportWorkerSalary/index') }}">工资表导出</a>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li data-name="app" class="layui-nav-item">
-                            <a href="javascript:;" lay-tips="任务管理" lay-direction="2">
-                                <i class="layui-icon layui-icon-form"></i>
-                                <cite>任务管理</cite>
-                            </a>
-                            <dl class="layui-nav-child">
-                                <dd>
-                                    <a lay-href="{{ URL::asset('/admin/jobOrder/index') }}">工作包管理</a>
-                                </dd>
-                                <dd>
-                                    <a lay-href="{{ URL::asset('/admin/jobOrderWorker/index') }}">工作包接单</a>
-                                </dd>
-                                <dd>
-                                    <a lay-href="{{ URL::asset('/admin/jobOrderItem/index') }}">工作包任务</a>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li data-name="user" class="layui-nav-item">
-                            <a href="javascript:;" lay-tips="业务设置" lay-direction="2">
-                                <i class="layui-icon layui-icon-set"></i>
-                                <cite>业务设置</cite>
-                            </a>
-                            <dl class="layui-nav-child">
-                                <dd>
-                                    <a lay-href="{{ URL::asset('/admin/city/index') }}">开通城市</a>
-                                </dd>
-                                <dd>
-                                    <a lay-href="{{ URL::asset('/admin/job/index') }}">工作设置</a>
-                                </dd>
-                                <dd>
-                                    <a lay-href="{{ URL::asset('/admin/rule/index') }}">预警规则</a>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li data-name="template" class="layui-nav-item">
-                            <a href="javascript:;" lay-tips="页面管理" lay-direction="2">
-                                <i class="layui-icon layui-icon-template"></i>
-                                <cite>页面管理</cite>
-                            </a>
-                            <dl class="layui-nav-child">
-                                <dd><a lay-href="{{ URL::asset('/admin/ruleTw/index') }}">规则配置</a></dd>
-                                <dd><a lay-href="{{ URL::asset('/admin/company/edit') }}">联系方式</a></dd>
                             </dl>
                         </li>
                         <li data-name="get" class="layui-nav-item">

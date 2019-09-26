@@ -418,6 +418,25 @@ class UserManager
     }
 
     /*
+    * setUserLogin TelCode
+    *
+    * 补全登录信息
+    *
+    *
+    */
+    public static function setUserLoginTelCode($user, $phonenum, $code)
+    {
+        $user_login = new UserLogin();
+        $user_login->user_id = $user->id;
+        $user_login->account_type = Utils::ACCOUNT_TYPE_TEL_PASSWORD;
+        $user_login->ve_value1 = $phonenum;
+        $user_login->ve_value2 = md5($phonenum . $code);
+        $user_login->token = Utils::getGUID();
+        UserLoginManager::save($user_login);
+        return $user_login;
+    }
+
+    /*
      * 小程序补全登录信息，主要解决uniond、openid等缺失的问题
      *
      * By TerryQi

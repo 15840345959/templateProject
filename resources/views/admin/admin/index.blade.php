@@ -53,7 +53,7 @@
                         添加管理员
                     </button>
                 </div>
-                <div>
+                <div class="table-container">
                     <table class="layui-table text-c" style="width: 100%;">
                         <thead>
                         <th scope="col" colspan="100">

@@ -37,7 +37,6 @@ Route::group(['prefix' => '', 'middleware' => ['BeforeRequest', 'CheckItemValid'
     Route::get('user/getListByCon', 'Api\UserController@getListByCon');
     Route::post('user/login', 'Api\UserController@login');       //用户登陆
     Route::post('user/bindUnionId', 'Api\UserController@bindUnionId')->middleware('CheckToken');          //绑定unionid
-    Route::post('user/updateById', 'Api\UserController@updateById')->middleware('CheckToken');       //更新用户信息
-    Route::get('user/isWorker', 'Api\UserController@isWorker')->middleware('CheckToken');       //判断用户是否为员工
+    Route::post('user/updateById', 'Api\UserController@updateById')->middleware('CheckToken');       //更新用户信
 
 });

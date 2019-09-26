@@ -634,6 +634,42 @@ class Utils
         return $en_week_num;
     }
 
+    /*
+ * 手机号脱敏隐藏中间4位
+ *
+ * By TerryQi
+ *
+ * 2019-09-16
+ */
+    public static function hidePhonenum($phonenum)
+    {
+        $resstr = substr_replace($phonenum, '****', 3, 4);
+        return $resstr;
+    }
+
+
+    /*
+     * 根据秒数转换为X分X秒的形式
+     *
+     * By TerryQi
+     *
+     * 2019-09019
+     *
+     * 例如输入为70，则输出为1分10秒
+     */
+    public static function getMinSecStr($seconds)
+    {
+        $c_minutes = intval($seconds / 60);     //分钟数
+        $c_seconds = intval($seconds) % 60;     //秒数
+        $time_str = "";
+        if ($c_minutes > 0) {
+            $time_str = $time_str . $c_minutes . "分";
+        }
+        $time_str = $time_str . $c_seconds . "秒";
+
+        return $time_str;
+    }
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //LOG相关

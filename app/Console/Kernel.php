@@ -35,52 +35,6 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-
-        /*
-         * 每天01:00生成工作包任务
-         *
-         * By TerryQi
-         *
-         * 2019-06-23
-         */
-        $schedule->call(function () {
-            Utils::processLog(__METHOD__, '', "生成工作包任务 start at:" . time());
-            $week_num = Utils::getChiWeekNum(DateTool::getToday());
-            $job_orders = JobOrderManager::getListByCon(['status' => '1', 'week_times' => $week_num], false);
-            foreach ($job_orders as $job_order) {
-                JobOrderWorkerManager::generateJobOrderItem($job_order->id);
-            }
-            Utils::processLog(__METHOD__, '', "生成工作包任务 end at:" . time());
-        })->dailyAt('01:00');
-
-
-        /*
-         * 每天17:00进行打卡提醒
-         *
-         * By TerryQi
-         *
-         * 2019-06-23
-         */
-        $schedule->call(function () {
-            Utils::processLog(__METHOD__, '', "打卡提醒 start at:" . time());
-            ScheduleManager::clockInNotifySchedule();
-            Utils::processLog(__METHOD__, '', "打卡提醒 end at:" . time());
-        })->dailyAt('17:00');
-
-        /*
-         * 每天18:00进行考核提醒
-         *
-         * By TerryQi
-         *
-         * 2019-06-23
-         */
-        $schedule->call(function () {
-            Utils::processLog(__METHOD__, '', "考核提醒 start at:" . time());
-            ScheduleManager::auditNotifySchedule();
-            Utils::processLog(__METHOD__, '', "考核提醒 end at:" . time());
-        })->dailyAt('18:00');
-
-
         /// 头像处理任务，每分钟处理15个，将现有存量的头像配置为七牛
         ///
         /// By TerryQi
