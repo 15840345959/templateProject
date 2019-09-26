@@ -52,7 +52,6 @@
                                         在代码开发过程中，团队梳理了可控、可回溯的项目执行过程监控规范，确保项目的进度和质量；代码实现时，依赖于多年累积的经验和顶层设计思想，基于规范进行实施，定期进行代码review，确保业务的扩展性。
                                         希望贵公司业务能够蓬勃发展，创造更广阔的合作空间。
                                     </p>
-
                                 </div>
                             </div>
                         </div>
@@ -130,7 +129,7 @@
                         layer.msg('已经启用');
                         $("#search_form").submit();
                     } else {
-                        layer.msg(ret.message, {icon: 5, time: 2000});
+                        layer.msg(ret.message, {icon: 5, time: 1000});
                     }
                     layer.close(loadding_index);
                 });
@@ -153,7 +152,7 @@
                         layer.msg('已经停用');
                         $("#search_form").submit();
                     } else {
-                        layer.msg(ret.message, {icon: 5, time: 2000});
+                        layer.msg(ret.message, {icon: 5, time: 1000});
                     }
                     layer.close(loadding_index);
                 });
@@ -199,8 +198,6 @@
          *
          */
         function refresh() {
-            $('#search_form')[0].reset();
-            {{--location.replace('{{URL::asset('/admin/aboutus/index')}}');--}}
             reloadPage();
         }
 

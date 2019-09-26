@@ -40,7 +40,7 @@ class GeoHashTool
      * 在数据库中的用法如下
      *
      * 在Manager的getListByCon方法中
-     * 
+     *
         //geohash检索，需要传入geohash和distance
         if (array_key_exists('lat', $con_arr) && !Utils::isObjNull($con_arr['lat'])
             && array_key_exists('lon', $con_arr) && !Utils::isObjNull($con_arr['lon'])

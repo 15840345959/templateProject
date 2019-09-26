@@ -34,8 +34,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['BeforeRequest', 'CheckAdmin
     //错误页面
     Route::get('/error/500', ['as' => 'error', 'uses' => 'Admin\IndexController@error']);  //错误页面
 
-    //关于我们
-    Route::any('/aboutus/index', 'Admin\AboutUsController@index');  //aboutus首页
+    //授权页面
+    Route::get('/authorization/index', 'Admin\AuthorizationController@index');      //授权信息
 
 
     //管理员管理

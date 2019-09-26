@@ -17,7 +17,7 @@ use App\Components\Common\ApiResponse;
 use App\Models\Ad;
 use Illuminate\Http\Request;
 
-class AboutUsController
+class AuthorizationController
 {
 
     /*
@@ -32,7 +32,7 @@ class AboutUsController
         $admin = $request->session()->get('admin');
         $data = $request->all();
 
-        return view('admin.aboutus.index', ['admin' => $admin, 'datas' => null, 'con_arr' => null]);
+        return view('admin.authorization.index', ['admin' => $admin, 'datas' => null, 'con_arr' => null]);
     }
 
 }
