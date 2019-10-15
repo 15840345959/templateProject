@@ -114,15 +114,20 @@ class Utils
      * @param int $https https协议
      * @return bool|mixed
      */
-    public static function curl($url, $params = false, $ispost = 0, $https = 0)
+    public static function curl($url, $params = false, $ispost = 0, $https = 0, $header = null)
     {
         Utils::processLog(__METHOD__, '', " " . "url:" . $url);
         $httpInfo = array();
         $ch = curl_init();
-//        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-//                'Content-Type: application/json; charset=utf-8'
-//            )
-//        );
+
+        //2019-10-07进行优化，可以设置header信息
+        if ($header == null) {
+            $header = array(
+                'Content-Type: application/json; charset=utf-8'
+            );
+        }
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36');
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
@@ -133,8 +138,9 @@ class Utils
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); // 从证书中检查SSL加密算法是否存在
         }
         if ($ispost) {
+            Utils::processLog(__METHOD__, "", "POST请求的params：" . json_encode($params));
             curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
             curl_setopt($ch, CURLOPT_URL, $url);
         } else {
             if ($params) {
@@ -159,33 +165,23 @@ class Utils
         return $response;
     }
 
+
     /**
      * 经纬度转GeoHash编码
      *
      * $lat  $lon经纬度参数
      *
-     * $key 1:代表获取8个区域所有  配合$distance字段使用   2：创建门店时存到数据库中的经纬度转geohash编码字段
-     *
      * $distance 获取范围的经度6差不多在范围1000米内 值越大越精确
      */
-    public static function latAndLngCoding($lat, $lon, $key, $distance)
+    public static function getGeoHash($lat, $lon, $distance = null)
     {
         $geohash = new GeoHash();
         $geo = $geohash->encode($lat, $lon);
-
-        if ($key == 1) {
-            //取出相邻八个区域
+        Utils::processLog(__METHOD__, '', 'geo:' . json_encode($geo));
+        if (!Utils::isObjNull($distance)) {
             $geo = substr($geo, 0, $distance);
-            $neighbors = $geohash->neighbors($geo);
-            array_push($neighbors, $geo);
-            $values = [];
-            foreach ($neighbors as $key => $val) {
-                array_push($values, $val);
-//                $values .= '\'' . $val . '\'' .',';
-            }
-            $geo = $values;
         }
-
+        Utils::processLog(__METHOD__, '', 'substr geo:' . json_encode($geo));
         return $geo;
     }
 
@@ -537,7 +533,7 @@ class Utils
      * @str：需要截取的字符串 start：开始位置 length：长度 chartset：字符集 suffix 结束符
      */
 
-    public static function substr_text($str, $start = 0, $length, $charset = "utf-8", $suffix = "")
+    public static function substrText($str, $start = 0, $length, $charset = "utf-8", $suffix = "")
     {
         if (function_exists("mb_substr")) {
             return mb_substr($str, $start, $length, $charset) . $suffix;
@@ -634,40 +630,18 @@ class Utils
         return $en_week_num;
     }
 
+
     /*
- * 手机号脱敏隐藏中间4位
- *
- * By TerryQi
- *
- * 2019-09-16
- */
+     * 手机号脱敏隐藏中间4位
+     *
+     * By TerryQi
+     *
+     * 2019-09-16
+     */
     public static function hidePhonenum($phonenum)
     {
         $resstr = substr_replace($phonenum, '****', 3, 4);
         return $resstr;
-    }
-
-
-    /*
-     * 根据秒数转换为X分X秒的形式
-     *
-     * By TerryQi
-     *
-     * 2019-09019
-     *
-     * 例如输入为70，则输出为1分10秒
-     */
-    public static function getMinSecStr($seconds)
-    {
-        $c_minutes = intval($seconds / 60);     //分钟数
-        $c_seconds = intval($seconds) % 60;     //秒数
-        $time_str = "";
-        if ($c_minutes > 0) {
-            $time_str = $time_str . $c_minutes . "分";
-        }
-        $time_str = $time_str . $c_seconds . "秒";
-
-        return $time_str;
     }
 
 

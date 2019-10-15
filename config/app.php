@@ -190,6 +190,9 @@ return [
 
         //excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
+
+        //Cors
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*
